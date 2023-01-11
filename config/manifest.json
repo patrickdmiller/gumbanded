@@ -1,0 +1,39 @@
+{
+  "manifest": {
+    "statuses": [
+      {
+        "id": "LED_TEMPERATURE_AVERAGE",
+        "type": "String",
+        "display": "Average LED Temperature",
+        "default": "NA",
+        "order": 0
+      }
+    ],
+    "controls": [
+      {
+        "id": "reload",
+        "type": "Single",
+        "display": "Reload",
+        "enabledOpMode": "On"
+      }
+    ],
+    "settings": [
+      {
+        "id": "APP_ID",
+        "type": "Dropdown",
+        "display": "Current App",
+        "tag":"BLEH",
+        "items": [
+          {
+            "id": "BLOCKSQUISH",
+            "display": "blocksquish"
+          },
+          {
+            "id": "BALLPIT",
+            "display": "ball pit"
+          }
+        ]
+      }
+    ]
+  }
+}

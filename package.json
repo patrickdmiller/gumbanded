@@ -1,0 +1,16 @@
+{
+  "name": "deeplocal-gumband-class",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@deeplocal/gumband-node-sdk": "^1.0.39",
+    "dotenv": "^16.0.3",
+    "node-color-log": "^10.0.2"
+  }
+}
