@@ -1,27 +1,29 @@
 const { Gumband: _Gumband, Sockets } = require("@deeplocal/gumband-node-sdk");
+const { ManifestEditor } = require("./manifest-editor");
 const logger = require("node-color-log");
 const GumbandSetupObject = {};
 const fs = require("fs");
 
 const { EventEmitter } = require("events");
 
-class ManifestEditor {
-  constructor({ manifestLocation } = {}) {
-    this.manifestLocation = manifestLocation;
-  }
-
-  async init() {
-    this.contents = JSON.parse(fs.readFileSync(this.manifestLocation, 'utf8'));
-    console.log(this.contents);
-  }
-}
-let manifest = null;
+// let Manifest = new ManifestEditor();
 
 class Gumband {
   static event = new EventEmitter();
   static isReady = false;
   static isSetup = false;
-
+  static listeners = {
+    settings: {},
+  };
+  static listenerHandlers = {
+    [Sockets.SETTING_RECEIVED]: (payload) => {
+      if(payload.id in this.listeners.settings){
+        let prevValue = this.listeners.settings[payload.id].value
+        this.listeners.settings[payload.id].value = payload.value
+        this.listeners.settings[payload.id].e.emit('onChange', prevValue, this.listeners.settings[payload.id].value)
+      }
+    },
+  };
   constructor() {
     throw new Error("To get an instance of Gumband use Gumband.getInstance()");
   }
@@ -56,14 +58,15 @@ class Gumband {
     });
   }
 
+  //TODO wait on both gumband being ready AND manifest file being read
   static getInstance({ logTag = null } = {}) {
     if (!this.isSetup) {
       throw new Error("Gumband requires setup before ");
     }
     if (!_Gumband.instance) {
       logger.info("Gumband: instantiating singleton", logTag);
-      manifest = new ManifestEditor({manifestLocation:GumbandSetupObject.manifestLocation})
-      manifest.init()
+      this.manifest = new ManifestEditor();
+      this.manifest.init({ manifestLocation: GumbandSetupObject.manifestLocation });
       _Gumband.instance = new _Gumband(
         GumbandSetupObject.token,
         GumbandSetupObject.exhibitId,
@@ -73,6 +76,10 @@ class Gumband {
       _Gumband.instance.on(Sockets.READY, () => {
         this.isReady = true;
         this.event.emit("ready");
+      });
+
+      _Gumband.instance.on(Sockets.SETTING_RECEIVED, (payload) => {
+        this.listenerHandlers[Sockets.SETTING_RECEIVED](payload);
       });
     } else {
       logger.info("Gumband: getting singleton instance", logTag);

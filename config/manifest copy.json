@@ -37,7 +37,7 @@
       {
         "id": "TEST_COLOR",
         "type": "Dropdown",
-        "display": "Current Color",
+        "display": "Current App",
         "tag":"TEST",
         "items": [
           {
@@ -46,7 +46,7 @@
           },
           {
             "id": "BLUE",
-            "display": "Blue"
+            "display": "display"
           }
         ]
       }
