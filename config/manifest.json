@@ -22,7 +22,7 @@
         "id": "APP_ID",
         "type": "Dropdown",
         "display": "Current App",
-        "tag":"TEST",
+        "tag":"TEST2",
         "items": [
           {
             "id": "BLOCKSQUISH",

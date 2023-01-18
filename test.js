@@ -12,10 +12,10 @@ Gumband.setup({
     contentLocation: "./content",
   },
 });
+const test2 = require("./test2");
 
 
 //wait until it's ready to really do anything...
 Gumband.awaitReady().then((GB) => {
   logger.debug("we're ready!")
-  const test2 = require("./test2");
 })
