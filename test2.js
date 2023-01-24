@@ -20,7 +20,7 @@ const b = new Test({tag:'TEST2'})
 a.awaitReady().then(() => {
   //access a current setting value like this, which is automatically updated behind the scenes
   logger.debug(a.TEST_COLOR);
-  logger.debug(b.APP_ID, b.TEST_COLOR) //b.TEST_COLOR is null
+  logger.debug(b.APP_ID, b.TEST_COLOR) //b.TEST_COLOR is null since it belongs to a
 
   //if it's updated in cloud, this updates
   a.addListener("TEST_COLOR", "onChange", (oldval, newval) => {
