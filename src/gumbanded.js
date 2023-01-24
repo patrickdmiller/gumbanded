@@ -77,7 +77,7 @@ class Gumbanded extends EventEmitter {
     Object.defineProperty(this, id, {
       get() {
         const internalKey = id;
-        console.log("fetching", internalKey);
+        // console.log("fetching", internalKey);
         if (this._settings[internalKey].value !== null) {
           return this._settings[internalKey].value;
         }

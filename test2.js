@@ -16,6 +16,7 @@ Gumband.awaitReady().then(() => {});
 const a = new Test({tag:'TEST'});
 const b = new Test({tag:'TEST2'})
 
+
 //you can wait on any gumbanded class for when it's ready
 a.awaitReady().then(() => {
   //access a current setting value like this, which is automatically updated behind the scenes
@@ -37,4 +38,5 @@ a.awaitReady().then(() => {
     .catch((e) => {
       logger.error(e);
     });
+  console.log("I am here and onetwo is ", a.TEST_ONETWO)
 });

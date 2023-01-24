@@ -49,6 +49,23 @@
             "display": "Blue"
           }
         ]
+      },
+
+      {
+        "id": "TEST_ONETWO",
+        "type": "Dropdown",
+        "display": "One or Two?",
+        "tag":"TEST",
+        "items": [
+          {
+            "id": "ONE",
+            "display": "One"
+          },
+          {
+            "id": "TWO",
+            "display": "Two"
+          }
+        ]
       }
     ]
   }
